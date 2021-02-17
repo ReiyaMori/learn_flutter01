@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-// UIファイル読み込み
-import '';
 
-void main() {
-  runApp(MyApp());
-}
+void main()=>runApp(new MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget{
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'XD to Flutter example',
-      theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      // UI読み込み
-      home: XDxd_to_flutter(),
+  Widget build(BuildContext context){
+    return new MaterialApp(
+      title: "Kumasan",
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('くまおさんアプリ'),
+        ),
+        body: Text(
+          'こんにちは、ユーザーさん',
+          style: TextStyle(fontSize: 32.0),
+        ),
+      )
     );
   }
 }

@@ -30,7 +30,7 @@ class MyHomePage extends StatefulWidget{
 
 class _MyHomePageState extends State<MyHomePage>{
   String _message;
-  int _counter = 0;
+  int _counter = 1;
 
   //メッセージ初期値の指定
   @override
@@ -42,14 +42,12 @@ class _MyHomePageState extends State<MyHomePage>{
   //変更後のメッセージ
   void _setMessage(){
     setState(() {
-      if(_counter%2==0){
+      if(_counter == -1){
         _message = 'くまおです';
-        _counter++;
       }else{
         _message = 'こんにちは、ユーザーさん';
-        _counter++;
       }
-
+      _counter *= -1;
     });
   }
 

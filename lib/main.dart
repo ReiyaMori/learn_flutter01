@@ -28,33 +28,44 @@ class MyHomePage extends StatefulWidget{
   _MyHomePageState createState() => new _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage>{
-  String _message;
-  int _counter = 1;
 
-  //メッセージ初期値の指定
+//データ用クラス
+class Data{
+  int _price;
+  String _name;
+
+  Data(this._name, this._price): super();
+
+  @override
+  String toString(){
+    return _name + ':' + _price.toString() + '円';
+  }
+}
+
+class _MyHomePageState extends State<MyHomePage>{
+  //  サンプルデータ
+  static final _data = [
+    Data('Apple',200),
+    Data('Orange',150),
+    Data('Peach',300)
+  ];
+
+  Data _item;
+
   @override
   void initState(){
     super.initState();
-    _message = 'こんにちは、ユーザーさん';
+    _item = _data[0];
   }
 
-  //変更後のメッセージ
-  void _setMessage(){
+  void _setData(){
     setState(() {
-      if(_counter == -1){
-        _message = 'くまおです';
-      }else{
-        _message = 'こんにちは、ユーザーさん';
-      }
-      _counter *= -1;
+      _item = (_data..shuffle()).first;
     });
   }
 
-  //画面のビルド
   @override
   Widget build(BuildContext context){
-
     return Scaffold(
 
       appBar: AppBar(
@@ -62,14 +73,14 @@ class _MyHomePageState extends State<MyHomePage>{
       ),
 
       body: Text(
-        '$_message $_counter',
-        style: TextStyle(fontSize: 25.0),
+        _item.toString(),
+        style: TextStyle(fontSize: 32.0),
       ),
 
       floatingActionButton: FloatingActionButton(
-        onPressed: _setMessage,
-        tooltip: 'set message.',
-        child: Icon(Icons.arrow_forward_ios),
+        onPressed: _setData,
+        tooltip: 'set message',
+        child: Icon(Icons.star),
       ),
     );
   }
